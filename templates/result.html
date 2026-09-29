@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>匹配结果 · AI 求职 Copilot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <a class="back" href="{{ url_for('index') }}">← 返回重新分析</a>
+      <section class="result-header">
+        <div>
+          <p class="eyebrow">MATCH REPORT</p>
+          <h1>岗位匹配分析</h1>
+          <p class="lead">分数只反映当前可识别关键词，不代表录用概率。</p>
+        </div>
+        <div class="score"><strong>{{ result.score }}</strong><span>/ 100</span></div>
+      </section>
+
+      <section class="result-grid">
+        <article class="card">
+          <h2>已匹配能力</h2>
+          {% if result.matched %}
+            <div class="tags">{% for item in result.matched %}<span class="tag good">{{ item }}</span>{% endfor %}</div>
+          {% else %}<p>暂未识别到明确匹配项。</p>{% endif %}
+        </article>
+        <article class="card">
+          <h2>待补充能力</h2>
+          {% if result.missing %}
+            <div class="tags">{% for item in result.missing %}<span class="tag warn">{{ item }}</span>{% endfor %}</div>
+          {% else %}<p>当前关键词覆盖较完整。</p>{% endif %}
+        </article>
+        <article class="card wide">
+          <h2>匹配依据</h2>
+          <ul>{% for item in result.evidence %}<li>{{ item }}</li>{% endfor %}</ul>
+        </article>
+        <article class="card wide accent">
+          <h2>下一步行动</h2>
+          <ol>{% for item in result.recommendations %}<li>{{ item }}</li>{% endfor %}</ol>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
+

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI 求职 Copilot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">AI JOB COPILOT · MVP</p>
+        <h1>把岗位要求，变成下一步行动</h1>
+        <p class="lead">输入你的经历和目标岗位，获得可解释的匹配分析、能力缺口与简历补充建议。</p>
+      </header>
+
+      <form class="card form-grid" method="post" action="{{ url_for('analyse') }}">
+        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+        <label>
+          <span>我的经历</span>
+          <textarea name="profile" required placeholder="例如：负责 AI 产品需求分析，完成用户访谈、PRD 和原型设计……">{{ profile or '' }}</textarea>
+        </label>
+        <label>
+          <span>目标岗位 JD</span>
+          <textarea name="job_description" required placeholder="粘贴岗位职责和任职要求……">{{ job_description or '' }}</textarea>
+        </label>
+        <button type="submit">生成匹配分析</button>
+      </form>
+
+      <section class="principles">
+        <article><strong>可解释</strong><span>每个结论都有关键词依据</span></article>
+        <article><strong>不代写经历</strong><span>只提醒补充真实项目证据</span></article>
+        <article><strong>便于迭代</strong><span>先建立规则基线，再接入模型评测</span></article>
+      </section>
+    </main>
+  </body>
+</html>
+
