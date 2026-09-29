@@ -24,7 +24,7 @@ python app.py
 ## 运行测试
 
 ```bash
-pytest -q
+python -m pytest -q
 ```
 
 ## 后续实验扩展
