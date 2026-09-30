@@ -21,6 +21,20 @@ python app.py
 
 浏览器访问 `http://localhost:8000`。
 
+## Docker 运行
+
+```bash
+docker build -t ai-job-copilot:v1 .
+docker run -d --name ai-job-copilot -p 8000:8000 ai-job-copilot:v1
+```
+
+浏览器仍访问 `http://localhost:8000`。可使用下面的命令查看状态和日志：
+
+```bash
+docker ps
+docker logs ai-job-copilot
+```
+
 ## 运行测试
 
 ```bash
