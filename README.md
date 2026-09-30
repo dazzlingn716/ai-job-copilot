@@ -35,6 +35,17 @@ docker ps
 docker logs ai-job-copilot
 ```
 
+## Docker Compose 运行
+
+在已经创建 `ai-job-data` 数据卷和 `ai-job-network` 网络后运行：
+
+```bash
+docker compose up -d
+docker compose ps
+```
+
+Compose 版本使用 `http://localhost:8001`，停止时运行 `docker compose down`。
+
 ## 运行测试
 
 ```bash

@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    image: ai-job-copilot:v1
+    container_name: ai-job-copilot-compose
+    ports:
+      - "8001:8000"
+    volumes:
+      - ai-job-data:/app/data
+    networks:
+      - ai-job-network
+
+volumes:
+  ai-job-data:
+    external: true
+
+networks:
+  ai-job-network:
+    external: true
