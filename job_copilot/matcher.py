@@ -5,7 +5,7 @@ import re
 
 
 SKILL_ALIASES: dict[str, tuple[str, ...]] = {
-    "AI 产品设计": ("ai 产品", "ai product", "智能产品"),
+    "AI 产品设计": ("ai 产品", "ai产品", "ai product", "智能产品"),
     "用户研究": ("用户研究", "用户访谈", "user research"),
     "需求分析": ("需求分析", "需求拆解", "requirement"),
     "PRD": ("prd", "产品需求文档"),
