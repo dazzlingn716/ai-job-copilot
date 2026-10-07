@@ -1,0 +1,20 @@
+实验 4 - FAIL 阶段
+
+命令：
+python -m pytest -q
+
+结果：
+...F [100%]
+
+失败用例：
+tests/test_matcher.py::test_compact_ai_product_keyword_is_recognised
+
+核心断言：
+期望 matched == ["AI 产品设计", "需求分析"]
+实际 matched == ["需求分析"]
+
+定位结论：
+中文岗位描述经常写成紧凑形式“AI产品”，而关键词别名表只包含带空格的“AI 产品”，导致该能力没有被识别。
+
+测试汇总：
+1 failed, 3 passed

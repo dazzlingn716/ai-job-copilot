@@ -27,3 +27,14 @@ def test_unknown_job_description_returns_guidance():
     assert result.matched == []
     assert "补充" in result.recommendations[0]
 
+
+def test_compact_ai_product_keyword_is_recognised():
+    """Chinese job descriptions often omit the space in "AI 产品"."""
+    result = analyse_match(
+        "参与AI产品设计与需求分析。",
+        "负责AI产品规划，需要需求分析能力。",
+    )
+
+    assert result.score == 100
+    assert result.matched == ["AI 产品设计", "需求分析"]
+
