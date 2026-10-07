@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "skill": "allow",
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "python --version*": "allow",
+      "python -m pytest*": "allow",
+      ".venv/bin/python -m pytest*": "allow",
+      "rm *": "deny",
+      "git push*": "deny"
+    },
+    "project_inspector_*": "ask",
+    "playwright_*": "ask"
+  },
+  "mcp": {
+    "project_inspector": {
+      "type": "local",
+      "command": [
+        "/home/ariella/ai-job-copilot/.venv/bin/python",
+        "tools/project_inspector_mcp.py"
+      ],
+      "enabled": true,
+      "timeout": 5000
+    },
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": false,
+      "timeout": 15000
+    }
+  }
+}

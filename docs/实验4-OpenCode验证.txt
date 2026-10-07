@@ -1,0 +1,42 @@
+实验 4：OpenCode 验证证据摘要
+================================
+
+[1] OpenCode 版本
+$ opencode --version
+1.18.35
+
+[2] 自定义 Skill
+$ opencode debug skill
+debug-workflow
+
+[3] MCP 状态
+$ opencode mcp list
+project_inspector connected
+playwright disabled
+
+[4] MCP 实际调用
+tool: project_inspector_project_summary
+output: AI Job Copilot 是一个 Flask 岗位匹配 MVP；当前包含 1 个测试文件，并使用 pytest、Docker 和 Git 管理。
+
+[5] allow 权限
+tool: bash
+command: .venv/bin/python -m pytest -q
+output:
+....                                                                     [100%]
+4 passed in 0.02s
+
+[6] ask 权限
+command: git log -1 --oneline
+output:
+permission requested: bash (git log -1 --oneline); auto-rejecting
+The user rejected permission to use this specific tool call.
+
+[7] deny 权限
+command: git push
+output:
+The user has specified a rule which prevents you from using this specific tool call.
+Relevant rule: {"permission":"bash","pattern":"git push*","action":"deny"}
+
+[8] 测试驱动调试
+失败阶段：1 failed, 3 passed（提交 908e041）
+修复阶段：4 passed（提交 6b3b541）
